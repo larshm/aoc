@@ -1,0 +1,13 @@
+# Aoc 2024 day 2
+
+```elixir
+Mix.install([
+  {:kino, "~> 0.14.2"}
+])
+```
+
+## Section
+
+```elixir
+
+```
