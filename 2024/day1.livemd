@@ -1,0 +1,63 @@
+# Advent of code
+
+```elixir
+Mix.install([
+  {:kino, "~> 0.14.2"}
+])
+```
+
+## Day 1
+
+## part 1
+
+```elixir
+input = Kino.Input.textarea("Data")
+```
+
+```elixir
+Enum.map(Kino.Input.read(input)
+  |> String.replace("\n", "   ")
+  |> String.split("   "), &String.to_integer/1)
+|> Enum.with_index()
+|> Enum.split_with(fn {_val, i} -> rem(i, 2) == 0 end)
+|> Tuple.to_list()
+|> Enum.map(fn arr ->
+    Enum.map(arr, &elem(&1, 0))
+  end)
+|> Enum.map(fn arr ->
+    Enum.sort(arr)
+  end)
+|> Enum.zip()
+|> Enum.map(fn pair -> 
+    case pair do
+      {l, r} when l < r -> r - l
+      {l, r} when r < l -> l - r
+      _ -> 0
+    end
+  end)
+|> Enum.sum()
+```
+
+## part 2
+
+```elixir
+input = Kino.Input.textarea("Data 2")
+```
+
+```elixir
+{l, r} = Enum.map(Kino.Input.read(input)
+  |> String.replace("\n", "   ")
+  |> String.split("   "), &String.to_integer/1)
+|> Enum.with_index()
+|> Enum.split_with(fn {_val, i} -> rem(i, 2) == 0 end)
+|> Tuple.to_list()
+|> Enum.map(fn arr ->
+    Enum.map(arr, &elem(&1, 0))
+  end)
+|> List.to_tuple()
+
+l |> Enum.map(fn el -> 
+  el * Enum.count(r, fn rel -> el == rel end)
+end)
+|> Enum.sum()
+```
