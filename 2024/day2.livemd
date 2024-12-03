@@ -6,8 +6,22 @@ Mix.install([
 ])
 ```
 
-## Section
+## part 1
 
 ```elixir
+input = Kino.Input.textarea("Data")
+```
 
+```elixir
+Kino.Input.read(input)
+|> String.split("\n")
+|> Enum.map(fn s -> 
+    String.split(s, " ") 
+    |> Enum.map(&String.to_integer()/1)
+  end)
+|> Enum.map(fn report ->
+  Enum.reduce_while(report, 0, fn level, acc ->
+    # implement
+  end)
+end)
 ```
